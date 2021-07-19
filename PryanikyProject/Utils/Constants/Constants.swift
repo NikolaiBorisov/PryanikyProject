@@ -21,7 +21,12 @@ enum Constants {
     static let scheme = "https"
     static let host = "pryaniky.com"
     static let path = "/static/json/sample.json"
-    static let api = "https://pryaniky.com/static/json/sample.json"
+  }
+  
+  enum SegmentedControl {
+    static let section0 = "Hz"
+    static let section1 = "Selector"
+    static let section2 = "Picture"
   }
   
   enum TimeConstants {
@@ -40,6 +45,7 @@ enum Constants {
     static let pictureTableViewCell = "PictureTableViewCell"
     static let hzTableViewCell = "HzTableViewCell"
     static let selectorTableViewCell = "SelectorTableViewCell"
+    static let tableViewCell = "cell"
   }
   
   enum CellRowHeight {

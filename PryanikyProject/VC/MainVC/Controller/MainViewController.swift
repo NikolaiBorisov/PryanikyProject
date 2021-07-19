@@ -19,15 +19,39 @@ final class MainViewController: UIViewController, UISearchControllerDelegate {
     }
   }
   private lazy var viewMaker = MainVCViewMaker(container: self)
+  var selectedIndex = -1
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    AlamofireService.shared.getBlocksOfInfo {
-      print("JSON")
-    }
+    view.backgroundColor = .white
+    self.viewMaker.setupLayouts()
     self.setupNavigationBar()
     self.getPosts()
     self.setupBindings()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    handleSegmentedControlAction()
+  }
+  
+  private func handleSegmentedControlAction() {
+    self.viewMaker.segmentedControl.addTarget(
+      self,
+      action: #selector(onSegmentedControlTapped(_:)),
+      for: .valueChanged
+    )
+  }
+  
+  @objc private func onSegmentedControlTapped(_ sender: UISegmentedControl) {
+    switch sender.selectedSegmentIndex {
+    case 1:
+      viewMaker.tableView.reloadData()
+    case 2:
+      viewMaker.tableView.reloadData()
+    default:
+      viewMaker.tableView.reloadData()
+    }
   }
   
   private func setupBindings() {
@@ -70,32 +94,90 @@ final class MainViewController: UIViewController, UISearchControllerDelegate {
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let item = displayItems[indexPath.row]
-    presentDetailesController(for: item)
+    switch viewMaker.segmentedControl.selectedSegmentIndex {
+    case 0:
+      let items = self.displayItems.filter { (item) -> Bool in
+        item.name == .hz
+      }
+      let item = items[indexPath.row]
+      presentDetailesController(for: item)
+    case 1:
+      let items = self.displayItems.filter { (item) -> Bool in
+        item.name == .selector
+      }
+      let item = items[indexPath.row]
+      presentDetailesController(for: item)
+    case 2:
+      let items = self.displayItems.filter { (item) -> Bool in
+        item.name == .picture
+      }
+      let item = items[indexPath.row]
+      presentDetailesController(for: item)
+    default:
+      break
+    }
+   
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return Constants.CellRowHeight.tableViewCellRowHeight
+      return Constants.CellRowHeight.tableViewCellRowHeight
   }
   
   func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-    let item = displayItems[indexPath.row]
-    (cell as? PryanikCell)?.configure(with: item)
+    switch viewMaker.segmentedControl.selectedSegmentIndex {
+    case 0:
+      let items = self.displayItems.filter { (item) -> Bool in
+        item.name == .hz
+      }
+      let item = items[indexPath.row]
+      (cell as? PryanikCell)?.configure(with: item)
+    case 1:
+      let items = self.displayItems.filter { (item) -> Bool in
+        item.name == .selector
+      }
+      let item = items[indexPath.row]
+      (cell as? PryanikCell)?.configure(with: item)
+    case 2:
+      let items = self.displayItems.filter { (item) -> Bool in
+        item.name == .picture
+      }
+      let item = items[indexPath.row]
+      (cell as? PryanikCell)?.configure(with: item)
+    default:
+      break
+    }
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return displayItems.count
+    switch viewMaker.segmentedControl.selectedSegmentIndex {
+    case 0:
+      let items = self.displayItems.filter { (item) -> Bool in
+        item.name == .hz
+      }
+      return items.count
+    case 1:
+      let items = self.displayItems.filter { (item) -> Bool in
+        item.name == .selector
+      }
+      return items.count
+    case 2:
+      let items = self.displayItems.filter { (item) -> Bool in
+        item.name == .selector
+      }
+      return items.count
+    default:
+      return 1
+    }
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let item = displayItems[indexPath.row]
-    switch item.name {
-    case .picture:
-      return tableView.dequeueReusableCell(withIdentifier: Constants.ReuseIdentifier.pictureTableViewCell, for: indexPath)
-    case .hz:
-      return tableView.dequeueReusableCell(withIdentifier: Constants.ReuseIdentifier.hzTableViewCell, for: indexPath)
-    case .selector:
+    switch viewMaker.segmentedControl.selectedSegmentIndex {
+    case 1:
       return tableView.dequeueReusableCell(withIdentifier: Constants.ReuseIdentifier.selectorTableViewCell, for: indexPath)
+    case 2:
+      return tableView.dequeueReusableCell(withIdentifier: Constants.ReuseIdentifier.pictureTableViewCell, for: indexPath)
+    default:
+      return tableView.dequeueReusableCell(withIdentifier: Constants.ReuseIdentifier.hzTableViewCell, for: indexPath)
     }
   }
   

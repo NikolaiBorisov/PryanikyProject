@@ -31,7 +31,6 @@
 		FA3D5A9B26975BB200CCDD78 /* SelectorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA3D5A9926975BB200CCDD78 /* SelectorTableViewCell.xib */; };
 		FA3D5AA02697631900CCDD78 /* MainVCViewMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3D5A9F2697631900CCDD78 /* MainVCViewMaker.swift */; };
 		FA3D5ABC269874C000CCDD78 /* DetailsViewMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3D5ABB269874C000CCDD78 /* DetailsViewMaker.swift */; };
-		FA9896AE269993D100A1AB42 /* AlamofireService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9896AD269993D100A1AB42 /* AlamofireService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,7 +62,6 @@
 		FA3D5A9926975BB200CCDD78 /* SelectorTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectorTableViewCell.xib; sourceTree = "<group>"; };
 		FA3D5A9F2697631900CCDD78 /* MainVCViewMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVCViewMaker.swift; sourceTree = "<group>"; };
 		FA3D5ABB269874C000CCDD78 /* DetailsViewMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewMaker.swift; sourceTree = "<group>"; };
-		FA9896AD269993D100A1AB42 /* AlamofireService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,7 +175,6 @@
 		FA26C1EB2695FD2B00D3152A /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				FA9896AC269993C100A1AB42 /* Service */,
 				FA26C1F92695FF1800D3152A /* Network Manager */,
 			);
 			path = Core;
@@ -321,14 +318,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		FA9896AC269993C100A1AB42 /* Service */ = {
-			isa = PBXGroup;
-			children = (
-				FA9896AD269993D100A1AB42 /* AlamofireService.swift */,
-			);
-			path = Service;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -460,7 +449,6 @@
 				FA26C1E82695FCAC00D3152A /* NetworkRequest+ Ext.swift in Sources */,
 				FA26C1EE2695FD5200D3152A /* NetworkRequest.swift in Sources */,
 				FA3D5ABC269874C000CCDD78 /* DetailsViewMaker.swift in Sources */,
-				FA9896AE269993D100A1AB42 /* AlamofireService.swift in Sources */,
 				FA26C1F32695FDBA00D3152A /* Constants.swift in Sources */,
 				FA26C21626960D3600D3152A /* DetailsViewController.swift in Sources */,
 				FA26C200269600B500D3152A /* DataModelDTO.swift in Sources */,

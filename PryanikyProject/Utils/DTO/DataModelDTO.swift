@@ -13,6 +13,13 @@ struct DataModelDTO: Decodable {
     case hz
     case picture
     case selector
+    case none
+    
+    init(from decoder: Decoder) throws {
+      let container = try decoder.singleValueContainer()
+      let value = try container.decode(String.self)
+      self = ObjectType.init(rawValue: value) ?? .none
+    }
   }
   
   var data: [Data]
